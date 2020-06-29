@@ -87,7 +87,26 @@ public class LockerRobotDirectorTest {
         assertEquals("M 3 5\n\tL 3 5\nM 1 3\n\tR 1 3\n\t\tL 1 3", report);
     }
 
-    private void saveBags(Locker locker, int times) {
+    @Test
+    public void should_return_M_3_13_L_0_8_L_3_5_when_generate_report_given_one_manager_with_two_lockers_1st_0_8_2nd_3_5_and_exist_locker_robot_not_managed() {
+        Locker firstLocker = new Locker(8);
+        Locker secondLocker = new Locker(5);
+        LockerRobotDirector director = new LockerRobotDirector(singletonList(
+                new LockerRobotManager(asList(firstLocker, secondLocker))));
+        Locker lockerNotManaged = new Locker(10);
+        PrimaryLockerRobot managerNotManaged = new PrimaryLockerRobot(singletonList(new Locker(10)));
+
+        saveBags(firstLocker, 8);
+        saveBags(secondLocker, 2);
+        saveBags(lockerNotManaged, 1);
+        saveBags(managerNotManaged, 2);
+
+        String report = director.generateReport();
+
+        assertEquals("M 3 13\n\tL 0 8\n\tL 3 5", report);
+    }
+
+    private void saveBags(Storable locker, int times) {
         for (int i = 0; i < times; i++) {
             locker.save(new Bag());
         }
