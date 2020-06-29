@@ -6,10 +6,12 @@ import com.tw.exception.LockerIsFullException;
 import java.util.HashMap;
 
 public class Locker implements Storable {
+    private int capacity;
     private int availableCapacity;
     private HashMap<Ticket, Bag> savedBags = new HashMap<>();
 
     public Locker(int capacity) {
+        this.capacity = capacity;
         this.availableCapacity = capacity;
     }
 
@@ -43,7 +45,13 @@ public class Locker implements Storable {
         return savedBags.containsKey(ticket);
     }
 
+    @Override
     public int getAvailableCapacity() {
         return availableCapacity;
+    }
+
+    @Override
+    public int getCapacity() {
+        return capacity;
     }
 }

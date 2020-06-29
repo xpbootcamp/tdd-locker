@@ -8,4 +8,8 @@ public interface Storable {
     boolean isFull();
 
     boolean contains(Ticket ticket);
+
+    int getAvailableCapacity();
+
+    int getCapacity();
 }

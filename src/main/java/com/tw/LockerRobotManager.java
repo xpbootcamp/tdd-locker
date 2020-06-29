@@ -31,4 +31,16 @@ public class LockerRobotManager {
         }
         throw new InvalidTicketException();
     }
+
+    public int getAvailableCapacity() {
+        return storables.stream().mapToInt(Storable::getAvailableCapacity).sum();
+    }
+
+    public int getCapacity() {
+        return storables.stream().mapToInt(Storable::getCapacity).sum();
+    }
+
+    public List<Storable> getStorables() {
+        return storables;
+    }
 }
