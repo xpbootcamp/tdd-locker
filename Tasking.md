@@ -36,3 +36,7 @@
 13. Given manager没有管理locker，且manager管理2个robot，且票据无效，when manager取包，then 取包失败，提示非法票据
 14. Given manager管理1个locker和1个robot，且票据有效，when manager取包，then 取包成功
 15. Given manager管理1个locker和1个robot，且票据无效，when manager取包，then 取包失败，提示非法票据
+
+## locker robot director
+![image](director-tasking-1.png)
+![image](director-tasking-2.png)
