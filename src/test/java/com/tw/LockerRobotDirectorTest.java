@@ -1,5 +1,6 @@
 package com.tw;
 
+import com.tw.robot.PrimaryLockerRobot;
 import org.junit.Test;
 
 import static java.util.Arrays.asList;
@@ -33,6 +34,21 @@ public class LockerRobotDirectorTest {
         String report = director.generateReport();
 
         assertEquals("M 4 13\n\tL 1 8\n\tL 3 5", report);
+    }
+
+    @Test
+    public void should_return_M_3_10_R_1_5_L15_L2_5_when_generate_report_given_one_manager_has_a_robot_with_a_locker_1_5_and_a_locker_2_5() {
+        Locker robotLocker = new Locker(5);
+        Locker managerLocker = new Locker(5);
+        LockerRobotDirector director = new LockerRobotDirector(singletonList(new LockerRobotManager(
+                asList(new PrimaryLockerRobot(singletonList(robotLocker)), managerLocker))));
+
+        saveBags(robotLocker, 4);
+        saveBags(managerLocker, 3);
+
+        String report = director.generateReport();
+
+        assertEquals("M 3 10\n\tR 1 5\n\t\tL 1 5\n\tL 2 5", report);
     }
 
     private void saveBags(Locker locker, int times) {

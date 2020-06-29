@@ -2,6 +2,7 @@ package com.tw.robot;
 
 import com.tw.Bag;
 import com.tw.Locker;
+import com.tw.LockerRobotManager;
 import com.tw.Storable;
 import com.tw.Ticket;
 import com.tw.exception.InvalidTicketException;
@@ -47,5 +48,9 @@ public abstract class LockerRobot implements Storable {
     @Override
     public int getCapacity() {
         return lockers.stream().mapToInt(Locker::getCapacity).sum();
+    }
+
+    public List<Locker> getLockers() {
+        return lockers;
     }
 }
