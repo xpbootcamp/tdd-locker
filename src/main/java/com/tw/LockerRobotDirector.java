@@ -19,7 +19,14 @@ public class LockerRobotDirector {
     }
 
     public String generateReport() {
-        LockerRobotManager firstManager = managers.get(0);
+        StringBuilder builder = new StringBuilder();
+        for (LockerRobotManager manager : managers) {
+            builder.append(getManagerReport(manager));
+        }
+        return builder.toString().trim();
+    }
+
+    private String getManagerReport(LockerRobotManager firstManager) {
         StringBuilder stringBuilder = new StringBuilder(format(MANAGER_REPORT_LINE, firstManager.getAvailableCapacity(), firstManager.getCapacity()));
 
         for (Storable storable : firstManager.getStorables()) {
@@ -30,6 +37,7 @@ public class LockerRobotDirector {
                 stringBuilder.append(getReportLine(MANAGER_LOCKER_REPORT_LINE, storable));
             }
         }
+        stringBuilder.append("\n");
         return stringBuilder.toString();
     }
 
