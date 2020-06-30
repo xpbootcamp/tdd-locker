@@ -7,7 +7,7 @@ import com.tw.robot.LockerRobot;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.tw.util.IndentUtil.indent;
+import static com.tw.Reportable.gatherReport;
 import static java.lang.String.format;
 
 public class LockerRobotManager implements Reportable {
@@ -46,12 +46,7 @@ public class LockerRobotManager implements Reportable {
 
     @Override
     public String report() {
-        StringBuilder stringBuilder = new StringBuilder(format("M %d %d", getAvailableCapacity(), getCapacity()));
-
-        for (Storable storable : storables) {
-            stringBuilder.append(format("\n%s", indent(storable.report())));
-        }
-        return stringBuilder.toString();
+        return gatherReport(format("M %d %d", getAvailableCapacity(), getCapacity()), storables);
     }
 
     private int getAvailableCapacity() {

@@ -9,8 +9,9 @@ import com.tw.exception.InvalidTicketException;
 
 import java.util.List;
 
-import static com.tw.util.IndentUtil.indent;
+import static com.tw.Reportable.gatherReport;
 import static java.lang.String.format;
+import static java.util.stream.Collectors.toList;
 
 public abstract class LockerRobot implements Storable, Reportable {
 
@@ -55,11 +56,8 @@ public abstract class LockerRobot implements Storable, Reportable {
 
     @Override
     public String report() {
-        StringBuilder builder = new StringBuilder(format("R %d %d", getAvailableCapacity(), getCapacity()));
+        List<Storable> lockers = this.lockers.stream().map(locker -> (Storable) locker).collect(toList());
 
-        for (Locker locker : lockers) {
-            builder.append(format("\n%s", indent(locker.report())));
-        }
-        return builder.toString();
+        return gatherReport(format("R %d %d", getAvailableCapacity(), getCapacity()), lockers);
     }
 }
