@@ -34,7 +34,7 @@ public class LockerRobotDirector {
                 stringBuilder.append(getRobotReport((LockerRobot) storable));
 
             } else {
-                stringBuilder.append(getReportLine(MANAGER_LOCKER_REPORT_LINE, storable));
+                stringBuilder.append(format(MANAGER_LOCKER_REPORT_LINE, storable.getAvailableCapacity(), storable.getCapacity()));
             }
         }
         stringBuilder.append("\n");
@@ -44,15 +44,12 @@ public class LockerRobotDirector {
     private String getRobotReport(LockerRobot robot) {
         StringBuilder builder = new StringBuilder();
 
-        builder.append(getReportLine(ROBOT_REPORT_LINE, robot));
+        builder.append(format(ROBOT_REPORT_LINE, robot.getAvailableCapacity(), robot.getCapacity()));
 
         for (Locker locker : robot.getLockers()) {
-            builder.append(getReportLine(ROBOT_LOCKER_REPORT_LINE, locker));
+            builder.append(format(ROBOT_LOCKER_REPORT_LINE, locker.getAvailableCapacity(), locker.getCapacity()));
         }
         return builder.toString();
     }
 
-    private String getReportLine(String format, Storable storable) {
-        return format(format, storable.getAvailableCapacity(), storable.getCapacity());
-    }
 }
