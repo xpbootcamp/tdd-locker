@@ -93,7 +93,7 @@ public class LockerRobotManagerTest {
     @Test
     public void should_return_ticket_and_save_to_robot_when_save_bag_given_manager_has_a_robot_and_a_locker_both_have_capacity() {
         Locker robotLocker = new Locker(2);
-        LockerRobotManager manager = new LockerRobotManager(asList(new PrimaryLockerRobot(singletonList(robotLocker)), new Locker(3)));
+        LockerRobotManager manager = new LockerRobotManager(asList(new Locker(3), new PrimaryLockerRobot(singletonList(robotLocker))));
 
         Bag myBag = new Bag();
         Ticket ticket = manager.save(myBag);

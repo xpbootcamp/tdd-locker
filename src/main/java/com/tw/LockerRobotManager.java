@@ -2,7 +2,9 @@ package com.tw;
 
 import com.tw.exception.InvalidTicketException;
 import com.tw.exception.LockerIsFullException;
+import com.tw.robot.LockerRobot;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.tw.util.IndentUtil.indent;
@@ -10,10 +12,17 @@ import static java.lang.String.format;
 
 public class LockerRobotManager implements Reportable {
 
-    private final List<Storable> storables;
+    private List<Storable> storables = new ArrayList<>();
 
-    public LockerRobotManager(List<Storable> storables) {
-        this.storables = storables;
+    public LockerRobotManager(List<Storable> input) {
+        List<Storable> storables = new ArrayList<>(input);
+        for (Storable storable : input) {
+            if (storable instanceof LockerRobot) {
+                this.storables.add(storable);
+                storables.remove(storable);
+            }
+        }
+        this.storables.addAll(storables);
     }
 
     public Ticket save(Bag bag) {
