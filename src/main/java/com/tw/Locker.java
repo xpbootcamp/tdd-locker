@@ -5,7 +5,7 @@ import com.tw.exception.LockerIsFullException;
 
 import java.util.HashMap;
 
-public class Locker implements Storable {
+public class Locker implements Storable, Reportable {
     private int capacity;
     private int availableCapacity;
     private HashMap<Ticket, Bag> savedBags = new HashMap<>();
@@ -53,5 +53,10 @@ public class Locker implements Storable {
     @Override
     public int getCapacity() {
         return capacity;
+    }
+
+    @Override
+    public String report() {
+        return String.format("L %d %d", availableCapacity, capacity);
     }
 }

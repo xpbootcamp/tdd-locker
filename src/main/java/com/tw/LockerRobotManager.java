@@ -5,7 +5,10 @@ import com.tw.exception.LockerIsFullException;
 
 import java.util.List;
 
-public class LockerRobotManager {
+import static com.tw.util.IndentUtil.indent;
+import static java.lang.String.format;
+
+public class LockerRobotManager implements Reportable {
 
     private final List<Storable> storables;
 
@@ -32,15 +35,21 @@ public class LockerRobotManager {
         throw new InvalidTicketException();
     }
 
-    public int getAvailableCapacity() {
+    @Override
+    public String report() {
+        StringBuilder stringBuilder = new StringBuilder(format("M %d %d", getAvailableCapacity(), getCapacity()));
+
+        for (Storable storable : storables) {
+            stringBuilder.append(format("\n%s", indent(storable.report())));
+        }
+        return stringBuilder.toString();
+    }
+
+    private int getAvailableCapacity() {
         return storables.stream().mapToInt(Storable::getAvailableCapacity).sum();
     }
 
-    public int getCapacity() {
+    private int getCapacity() {
         return storables.stream().mapToInt(Storable::getCapacity).sum();
-    }
-
-    public List<Storable> getStorables() {
-        return storables;
     }
 }

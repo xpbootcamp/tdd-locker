@@ -1,6 +1,6 @@
 package com.tw;
 
-public interface Storable {
+public interface Storable extends Reportable {
     Ticket save(Bag bag);
 
     Bag pickUp(Ticket ticket);

@@ -2,15 +2,18 @@ package com.tw.robot;
 
 import com.tw.Bag;
 import com.tw.Locker;
-import com.tw.LockerRobotManager;
+import com.tw.Reportable;
 import com.tw.Storable;
 import com.tw.Ticket;
 import com.tw.exception.InvalidTicketException;
 
 import java.util.List;
-import java.util.function.Predicate;
 
-public abstract class LockerRobot implements Storable {
+import static com.tw.util.IndentUtil.indent;
+import static java.lang.String.format;
+
+public abstract class LockerRobot implements Storable, Reportable {
+
     final List<Locker> lockers;
 
     LockerRobot(List<Locker> lockers) {
@@ -50,7 +53,13 @@ public abstract class LockerRobot implements Storable {
         return lockers.stream().mapToInt(Locker::getCapacity).sum();
     }
 
-    public List<Locker> getLockers() {
-        return lockers;
+    @Override
+    public String report() {
+        StringBuilder builder = new StringBuilder(format("R %d %d", getAvailableCapacity(), getCapacity()));
+
+        for (Locker locker : lockers) {
+            builder.append(format("\n%s", indent(locker.report())));
+        }
+        return builder.toString();
     }
 }

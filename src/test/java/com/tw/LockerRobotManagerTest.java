@@ -198,5 +198,4 @@ public class LockerRobotManagerTest {
 
         manager.pickUp(new Ticket());
     }
-
 }
