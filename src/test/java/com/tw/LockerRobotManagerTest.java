@@ -2,6 +2,8 @@ package com.tw;
 
 import com.tw.exception.InvalidTicketException;
 import com.tw.exception.LockerIsFullException;
+import com.tw.model.Bag;
+import com.tw.model.Ticket;
 import com.tw.robot.PrimaryLockerRobot;
 import com.tw.robot.SmartLockerRobot;
 import org.junit.Test;

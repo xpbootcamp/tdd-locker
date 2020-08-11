@@ -1,8 +1,8 @@
 package com.tw.robot;
 
-import com.tw.Bag;
+import com.tw.model.Bag;
 import com.tw.Locker;
-import com.tw.Ticket;
+import com.tw.model.Ticket;
 
 import java.util.List;
 

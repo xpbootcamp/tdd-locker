@@ -1,5 +1,8 @@
 package com.tw;
 
+import com.tw.model.Bag;
+import com.tw.model.Ticket;
+
 public interface Storable extends Reportable {
     Ticket save(Bag bag);
 

@@ -2,13 +2,15 @@ package com.tw;
 
 import com.tw.exception.InvalidTicketException;
 import com.tw.exception.LockerIsFullException;
+import com.tw.model.Bag;
+import com.tw.model.Ticket;
 
 import java.util.HashMap;
 
 public class Locker implements Storable, Reportable {
-    private int capacity;
+    private final int capacity;
     private int availableCapacity;
-    private HashMap<Ticket, Bag> savedBags = new HashMap<>();
+    private final HashMap<Ticket, Bag> savedBags = new HashMap<>();
 
     public Locker(int capacity) {
         this.capacity = capacity;

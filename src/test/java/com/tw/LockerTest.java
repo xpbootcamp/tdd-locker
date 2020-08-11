@@ -3,6 +3,8 @@ package com.tw;
 
 import com.tw.exception.InvalidTicketException;
 import com.tw.exception.LockerIsFullException;
+import com.tw.model.Bag;
+import com.tw.model.Ticket;
 import org.junit.Assert;
 import org.junit.Test;
 
